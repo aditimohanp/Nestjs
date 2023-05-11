@@ -11,12 +11,12 @@ export class ProductsService{
    private products: Product[] = [];
   
    constructor(
-    @InjectModel('Product') private readonly productModel:Model<Product>,
-    @InjectModel('Author') private readonly authorModel: Model<Author>,//add the model to import properties
+    @InjectModel('Product') private readonly productModel: Model<Product>,
+    @InjectModel('Author') private readonly authorModel: Model<Author>, //add the model to import properties
     ) {}
 
     async insertProduct( title:string, desc:string, price:number,  authorId: string,) {
-      const author = await this.authorModel.findById(authorId);//added
+      const author = await this.authorModel.findById(authorId); //added
       if (!author) {
         throw new NotFoundException('Author not found');
       }
@@ -24,7 +24,7 @@ export class ProductsService{
       const newProduct = new this.productModel({ title, description: desc, price, author, });
       const result = await newProduct.save();
       author.products.push(newProduct);
-      await author.save();// save the author every time the product is added
+      await author.save(); //save the author every time the product is added
         return result.id as string;
     }
 
@@ -38,7 +38,8 @@ export class ProductsService{
           $options: 'i'
         }
       }:{};
-      const products = await this.productModel.find({...keyword}).limit(resPerPage).skip(skip).populate('author').sort({price: 1}).exec();// use populate 
+      const products = await this.productModel.find({...keyword}).limit(resPerPage).skip(skip)
+      .populate('author').sort({price: 1}).exec();// use populate 
       return products.map((prod) => ({
         id: prod.id, 
         title: prod.title, 
@@ -47,7 +48,7 @@ export class ProductsService{
         author: prod.author, // add author field
       }));
     }
-
+    
     async getSingleProduct(productId: string) {
         const product = (await this.findProduct(productId)).populate('author');//populate
         return {

@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param, Patch, Delete, UseGuards, Query } f
 import { ProductsService } from "./products.service";
 import { AuthGuard } from "@nestjs/passport";
 import { Query as ExpressQuery } from 'express-serve-static-core';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiProperty, ApiCreatedResponse, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiProperty, ApiBody } from '@nestjs/swagger';
 
 @ApiTags('Products')
 @Controller('products')

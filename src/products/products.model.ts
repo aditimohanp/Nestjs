@@ -23,6 +23,6 @@ ProductSchema.virtual('authorInfo', {// add a path for product to refer the auth
         localField: 'author',
         foreignField: '_id',
         justOne: true,
-      });
+      }); 
       
 export const ProductModel = mongoose.model<Product>('Product', ProductSchema);  //added

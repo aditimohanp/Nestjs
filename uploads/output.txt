@@ -1,0 +1,6 @@
+this is a sample file
+output
+
+ 74 68 69 73 20 69 73 20 61 20 73 61 6d 70 6c 65 20 66 69 6c 65
+
+ date created Mon Apr 10 2023 17:53:49 GMT+0530 (India Standard Time)
